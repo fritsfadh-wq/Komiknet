@@ -2,113 +2,287 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Komiknet - Baca Komik Indonesia</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f5f9;
-      color: #222;
-    }
-    header {
-      background: #25234a;
-      color: white;
-      padding: 20px;
-    }
-    header h1 { margin: 0; }
-    header p { margin-bottom: 0; }
-    .search {
-      padding: 15px;
-    }
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    main { padding: 15px; }
-    h2 { font-size: 20px; }
-    .comics {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-    .comic {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px #0001;
-    }
-    .cover {
-      height: 160px;
-      display: grid;
-      place-items: center;
-      background: #deddf5;
-      font-size: 55px;
-    }
-    .comic h3 {
-      font-size: 15px;
-      margin: 10px;
-    }
-    .comic p {
-      font-size: 12px;
-      margin: 0 10px 12px;
-      color: #777;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Komiknet</h1>
-    <p>Baca Komik Favoritmu di Sini!</p>
-  </header>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komiknet - Baca Komik Indonesia</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #10101b;
+  color: white;
+}
+
+header {
+  background: #19192b;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #a78bfa;
+}
+
+nav {
+  background: #19192b;
+  padding: 12px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.search {
+  padding: 15px;
+}
+
+.search input {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.container {
+  padding: 15px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.banner {
+  background: linear-gradient(120deg, #673ab7, #24244c);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.banner h2 {
+  font-size: 24px;
+}
+
+.banner p {
+  color: #ddd;
+}
+
+.comics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.comic {
+  background: #202034;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cover {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 65px;
+}
+
+.cover1 { background: linear-gradient(135deg,#30235c,#a044ff); }
+.cover2 { background: linear-gradient(135deg,#063b56,#18a4a4); }
+.cover3 { background: linear-gradient(135deg,#6b241c,#e99b32); }
+.cover4 { background: linear-gradient(135deg,#712d62,#ed91b9); }
+
+.comic h3 {
+  font-size: 15px;
+  margin: 10px;
+}
+
+.comic p {
+  color: #aaa;
+  font-size: 12px;
+  margin: 10px;
+}
+
+.detail {
+  display: none;
+  padding: 20px;
+}
+
+.detail button {
+  background: #8056df;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin: 8px 0;
+}
+
+.episode {
+  background: #202034;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  padding: 25px;
+}
+
+@media (min-width: 700px) {
+  .comics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">KOMIKNET</div>
+  <div>☰</div>
+</header>
+
+<nav>
+  <a href="#" onclick="beranda()">Beranda</a>
+  <a href="#action">Action</a>
+  <a href="#fantasy">Fantasy</a>
+  <a href="#romance">Romance</a>
+  <a href="#comedy">Comedy</a>
+</nav>
+
+<div id="home">
   <div class="search">
-    <input type="text" id="search"
-      placeholder="Cari komik..."
-      oninput="cariKomik()">
+    <input id="search" type="text"
+    placeholder="Cari komik favoritmu..."
+    oninput="cariKomik()">
   </div>
 
-  <main>
+  <main class="container">
+    <div class="banner">
+      <h2>Dunia Komik Tanpa Batas!</h2>
+      <p>Baca berbagai cerita menarik hanya di Komiknet.</p>
+    </div>
+
     <h2>Komik Terbaru</h2>
-    <div class="comics" id="comics">
-      <div class="comic">
-        <div class="cover">⚔️</div>
+
+    <div class="comics">
+
+      <div class="comic" onclick="buka('Petualangan Ksatria')">
+        <div class="cover cover1">⚔️</div>
         <h3>Petualangan Ksatria</h3>
         <p>Fantasy • Episode 1</p>
       </div>
-      <div class="comic">
-        <div class="cover">🐉</div>
+
+      <div class="comic" onclick="buka('Dunia Naga')">
+        <div class="cover cover2">🐉</div>
         <h3>Dunia Naga</h3>
         <p>Adventure • Episode 1</p>
       </div>
-      <div class="comic">
-        <div class="cover">✨</div>
+
+      <div class="comic" onclick="buka('Raja Sihir')">
+        <div class="cover cover3">✨</div>
         <h3>Raja Sihir</h3>
         <p>Action • Episode 1</p>
       </div>
-      <div class="comic">
-        <div class="cover">🌸</div>
+
+      <div class="comic" onclick="buka('Kisah Sekolah')">
+        <div class="cover cover4">🌸</div>
         <h3>Kisah Sekolah</h3>
         <p>Romance • Episode 1</p>
       </div>
+
     </div>
   </main>
+</div>
 
-  <script>
-    function cariKomik() {
-      const kata = document.getElementById("search")
-        .value.toLowerCase();
-      document.querySelectorAll(".comic").forEach(item => {
-        item.style.display =
-          item.innerText.toLowerCase().includes(kata)
-          ? "block" : "none";
-      });
-    }
-  </script>
+<div class="detail" id="detail">
+  <button onclick="beranda()">← Kembali</button>
+  <h2 id="judul"></h2>
+  <p>Selamat datang di halaman detail komik.</p>
+  <h3>Daftar Episode</h3>
+  <div class="episode" onclick="baca()">Episode 1</div>
+  <div class="episode" onclick="baca()">Episode 2</div>
+  <div class="episode" onclick="baca()">Episode 3</div>
+</div>
+
+<div class="detail" id="reader">
+  <button onclick="kembaliDetail()">← Kembali</button>
+  <h2>Halaman Membaca</h2>
+  <p>Episode 1</p>
+  <div id="halaman">
+    <div style="background:#292940;padding:100px 15px;text-align:center;">
+      Halaman Komik 1
+    </div>
+    <div style="background:#38304f;padding:150px 15px;text-align:center;">
+      Halaman Komik 2
+    </div>
+    <div style="background:#292940;padding:150px 15px;text-align:center;">
+      Halaman Komik 3
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Komiknet
+  <br>Baca Komik Indonesia
+</footer>
+
+<script>
+function buka(nama) {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("detail").style.display = "block";
+  document.getElementById("reader").style.display = "none";
+  document.getElementById("judul").innerText = nama;
+  window.scrollTo(0,0);
+}
+
+function beranda() {
+  document.getElementById("home").style.display = "block";
+  document.getElementById("detail").style.display = "none";
+  document.getElementById("reader").style.display = "none";
+  window.scrollTo(0,0);
+}
+
+function baca() {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("detail").style.display = "none";
+  document.getElementById("reader").style.display = "block";
+  window.scrollTo(0,0);
+}
+
+function kembaliDetail() {
+  document.getElementById("reader").style.display = "none";
+  document.getElementById("detail").style.display = "block";
+}
+
+function cariKomik() {
+  let kata = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll(".comic").forEach(item => {
+    item.style.display =
+      item.innerText.toLowerCase().includes(kata)
+      ? "block" : "none";
+  });
+}
+</script>
+
 </body>
 </html>
